@@ -65,10 +65,10 @@ if platform.is_linux():
 
 elif platform.is_darwin():
     try:
-        from .fsevents import FSEventsObserver as Observer
+        from .kqueue import KqueueObserver as Observer
     except Exception:
         try:
-            from .kqueue import KqueueObserver as Observer
+            from .fsevents import FSEventsObserver as Observer
             warnings.warn("Failed to import fsevents. Fall back to kqueue")
         except Exception:
             from .polling import PollingObserver as Observer
